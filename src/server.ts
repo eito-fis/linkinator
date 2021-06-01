@@ -48,9 +48,11 @@ async function handleRequest(
   const url = new URL(req.url || '/', `http://localhost:${options.port}`);
   const pathParts = url.pathname.split('/').filter(x => !!x);
 
+  console.log(pathParts);
   if (!pathParts[pathParts.length - 1].endsWith('.md')) {
-    pathParts[pathParts.length - 1].concat('.md');
+    pathParts[pathParts.length - 1] += '.md';
   }
+  console.log(pathParts);
 
   const originalPath = path.join(root, ...pathParts);
   console.log(url);
