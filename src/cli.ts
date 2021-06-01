@@ -81,6 +81,8 @@ const cli = meow(
       $ linkinator . --recurse
       $ linkinator . --skip www.googleapis.com
       $ linkinator . --format CSV
+
+      testing
 `,
   {
     flags: {
