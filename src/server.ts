@@ -64,7 +64,7 @@ async function handleRequest(
     options.directoryListing && localPath.endsWith(`${path.sep}index.html`);
 
   try {
-    const stats = await stat(localPath);
+    const stats = await stat(localPath + '.md');
     const isDirectory = stats.isDirectory();
     if (isDirectory) {
       // this means we got a path with no / at the end!
