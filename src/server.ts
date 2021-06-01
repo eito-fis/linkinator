@@ -47,6 +47,11 @@ async function handleRequest(
 ) {
   const url = new URL(req.url || '/', `http://localhost:${options.port}`);
   const pathParts = url.pathname.split('/').filter(x => !!x);
+
+  if (!pathParts[pathParts.length - 1].endsWith('.md')) {
+    pathParts[pathParts.length - 1].concat('.md');
+  }
+
   const originalPath = path.join(root, ...pathParts);
   console.log(url);
   console.log(pathParts);
@@ -64,7 +69,7 @@ async function handleRequest(
     options.directoryListing && localPath.endsWith(`${path.sep}index.html`);
 
   try {
-    const stats = await stat(localPath + '.md');
+    const stats = await stat(localPath);
     const isDirectory = stats.isDirectory();
     if (isDirectory) {
       // this means we got a path with no / at the end!
